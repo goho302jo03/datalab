@@ -111,7 +111,8 @@ NOTES:
  */
 int absVal(int x)
 {
-    return 42;
+    int y = x>>31;
+    return (x^y) + (~y+1);
 }
 
 /*
@@ -137,7 +138,11 @@ int addOK(int x, int y)
  */
 int allEvenBits(int x)
 {
-    return 42;
+    x &= x>>16;
+    x &= x>>8;
+    x &= x>>4;
+    x &= x>>2;
+    return x&1;
 }
 
 /*
@@ -150,7 +155,11 @@ int allEvenBits(int x)
  */
 int allOddBits(int x)
 {
-    return 42;
+    x &= x>>16;
+    x &= x>>8;
+    x &= x>>4;
+    x &= x>>2;
+    return (x&2)>>1;
 }
 
 /*
@@ -163,7 +172,11 @@ int allOddBits(int x)
  */
 int anyEvenBit(int x)
 {
-    return 42;
+    x |= x>>16;
+    x |= x>>8;
+    x |= x>>4;
+    x |= x>>2;
+    return x&1;
 }
 
 /*
@@ -176,7 +189,12 @@ int anyEvenBit(int x)
  */
 int anyOddBit(int x)
 {
-    return 42;
+    x |= x>>16;
+    x |= x>>8;
+    x |= x>>4;
+    x |= x>>2;
+    x = x>>1;
+    return x&1;
 }
 
 /*
@@ -200,7 +218,9 @@ int bang(int x)
  */
 int bitAnd(int x, int y)
 {
-    return 42;
+    x = ~x;
+    y = ~y;
+    return ~(x|y);
 }
 
 /*
@@ -252,7 +272,9 @@ int bitMatch(int x, int y)
  */
 int bitNor(int x, int y)
 {
-    return 42;
+    x = ~x;
+    y = ~y;
+    return x&y;
 }
 
 /*
@@ -264,7 +286,9 @@ int bitNor(int x, int y)
  */
 int bitOr(int x, int y)
 {
-    return 42;
+    x = ~x;
+    y = ~y;
+    return ~(x&y);
 }
 
 /*
@@ -301,7 +325,8 @@ int bitReverse(int x)
  */
 int bitXor(int x, int y)
 {
-    return 42;
+    int z = ~(x&y);
+    return ~((~(x&z))&(~(y&z)));
 }
 
 /*
