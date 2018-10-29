@@ -125,6 +125,9 @@ int absVal(int x)
  */
 int addOK(int x, int y)
 {
+    /* int sum = x + y; */
+    /* int x_sign = !(x & (1<<31)); */
+    /* int y_sign = !(y & (1<<31)); */
     return 42;
 }
 
@@ -378,7 +381,7 @@ int countLeadingZero(int x)
  */
 int copyLSB(int x)
 {
-    return 42;
+    return ~(x&1)+1;
 }
 
 /*
@@ -414,7 +417,8 @@ int dividePower2(int x, int n)
  */
 int evenBits(void)
 {
-    return 42;
+    int x = 0x55;
+    return x | x<<8 | x<<16 | x<<24;
 }
 
 /*
@@ -729,7 +733,7 @@ int isAsciiDigit(int x)
  */
 int isEqual(int x, int y)
 {
-    return 42;
+    return !(x+~y+1);
 }
 
 /*
@@ -777,7 +781,7 @@ int isLessOrEqual(int x, int y)
  */
 int isNegative(int x)
 {
-    return 42;
+    return (x>>31)&1;
 }
 
 /*
@@ -789,7 +793,7 @@ int isNegative(int x)
  */
 int isNonNegative(int x)
 {
-    return 42;
+    return !((x>>31)&1);
 }
 
 /*
@@ -814,7 +818,7 @@ int isNonZero(int x)
  */
 int isNotEqual(int x, int y)
 {
-    return 42;
+    return !!(x+~y+1);
 }
 
 /*
@@ -863,7 +867,7 @@ int isPower2(int x)
  */
 int isTmax(int x)
 {
-    return 42;
+    return !(~(1<<31) ^ x);
 }
 
 /*
@@ -875,7 +879,7 @@ int isTmax(int x)
  */
 int isTmin(int x)
 {
-    return 42;
+    return !((1<<31) ^ x);
 }
 
 /*
@@ -887,7 +891,7 @@ int isTmin(int x)
  */
 int isZero(int x)
 {
-    return 42;
+    return !x;
 }
 
 /*
@@ -900,7 +904,7 @@ int isZero(int x)
  */
 int leastBitPos(int x)
 {
-    return 42;
+    return (~x+1) & x;
 }
 
 /*
@@ -972,7 +976,7 @@ int minimumOfTwo(int x, int y)
  */
 int minusOne(void)
 {
-    return 42;
+    return ~0;
 }
 
 /*
@@ -1000,7 +1004,7 @@ int multFiveEighths(int x)
  */
 int negate(int x)
 {
-    return 42;
+    return ~x+1;
 }
 
 /*
@@ -1011,7 +1015,8 @@ int negate(int x)
  */
 int oddBits(void)
 {
-    return 42;
+    int x = 0xAA;
+    return x | x<<8 | x<<16 | x<<24;
 }
 
 /*
@@ -1146,7 +1151,7 @@ int signMag2TwosComp(int x)
  */
 int specialBits(void)
 {
-    return 42;
+    return ~(0xD7<<14);
 }
 
 /*
@@ -1182,7 +1187,7 @@ int thirdBits(void)
  */
 int tmax(void)
 {
-    return 42;
+    return ~(1<<31);
 }
 
 /*
@@ -1193,7 +1198,7 @@ int tmax(void)
  */
 int tmin(void)
 {
-    return 42;
+    return 1<<31;
 }
 
 /*
