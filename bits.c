@@ -125,10 +125,10 @@ int absVal(int x)
  */
 int addOK(int x, int y)
 {
-    /* int sum = x + y; */
-    /* int x_sign = !(x & (1<<31)); */
-    /* int y_sign = !(y & (1<<31)); */
-    return 42;
+    int x_sign = (x>>31) & 1;
+    int y_sign = (y>>31) & 1;
+    int sum_sign = ((x+y)>>31) & 1;
+    return (x_sign^y_sign) | !((x_sign&y_sign) ^ sum_sign);
 }
 
 /*
@@ -209,7 +209,8 @@ int anyOddBit(int x)
  */
 int bang(int x)
 {
-    return 42;
+    int tmp = ((~x+1) | x) >> 31;
+    return tmp+1;
 }
 
 /*
@@ -250,7 +251,8 @@ int bitCount(int x)
  */
 int bitMask(int highbit, int lowbit)
 {
-    return 42;
+    int x = ~0;
+    return ~(x << highbit <<1) & (x << lowbit);
 }
 
 /*
@@ -303,7 +305,12 @@ int bitOr(int x, int y)
  */
 int bitParity(int x)
 {
-    return 42;
+    x ^= x>>16;
+    x ^= x>>8;
+    x ^= x>>4;
+    x ^= x>>2;
+    x ^= x>>1;
+    return x&1;
 }
 
 /*
@@ -355,7 +362,8 @@ int byteSwap(int x, int n, int m)
  */
 int conditional(int x, int y, int z)
 {
-    return 42;
+    int tmp = !x + ~0;
+    return (tmp&y) | (~tmp&z);
 }
 
 /*
@@ -393,7 +401,7 @@ int copyLSB(int x)
  */
 int distinctNegation(int x)
 {
-    return 42;
+    return !!((~x+1)^x);
 }
 
 /*
@@ -1176,7 +1184,8 @@ int subtractionOK(int x, int y)
  */
 int thirdBits(void)
 {
-    return 42;
+    int x = 0x49;
+    return x | x<<6 | x<<12 | x<<18 | x<<24;
 }
 
 /*
